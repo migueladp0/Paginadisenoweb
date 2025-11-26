@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial Médico - CareConnect Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-medico: #0077B6;
+            --blanco: #FFFFFF;
+            --gris-suave: #F1F1F1;
+            --verde-salud: #06D6A0;
+            --gris-texto: #666666;
+            --gris-fondo: #F9F9F9;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--gris-fondo);
+            color: #333333;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            background-color: var(--gris-suave);
+            width: 260px;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .header {
+            background-color: var(--blanco);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            margin: -2rem -2rem 2rem -2rem;
+        }
+        
+        .consultation-card {
+            background: var(--blanco);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--azul-medico);
+        }
+        
+        .filter-select {
+            border: 1px solid #CCCCCC;
+            border-radius: 6px;
+            padding: 8px 12px;
+            background-color: var(--blanco);
+            width: 160px;
+        }
+        
+        .stats-card {
+            background: var(--blanco);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #E0E0E0;
+        }
+        
+        .nav-link {
+            color: #333333;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--azul-medico);
+            color: white;
+        }
+        
+        .consultation-date {
+            color: var(--azul-medico);
+            font-weight: 600;
+        }
+        
+        .doctor-info {
+            color: var(--gris-texto);
+            font-size: 0.9rem;
+        }
+        
+        .consultation-notes {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header mb-4">
+            <h4 style="color: var(--azul-medico);">CareConnect Hub</h4>
+        </div>
+        
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">
+                    🏠 Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="citas.html">
+                    📅 Mis Citas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="historial.html">
+                    📊 Historial Médico
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    💬 Chat con Doctores
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    ⚙️ Configuración
+                </a>
+            </li>
+            <li class="nav-item mt-4">
+                <a class="nav-link" href="index.html" style="color: #dc3545;">
+                    🚪 Cerrar Sesión
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="fw-bold mb-0" style="color: var(--azul-medico);">Historial médico</h2>
+                <div class="user-info">
+                    <span class="text-muted">Paciente: María González</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex gap-3">
+                <select class="filter-select">
+                    <option>Jun 2025 ▼</option>
+                    <option>Mayo 2025</option>
+                    <option>Abril 2025</option>
+                    <option>Marzo 2025</option>
+                </select>
+                
+                <select class="filter-select">
+                    <option>Todas las especialidades</option>
+                    <option>Cardiología</option>
+                    <option>Dermatología</option>
+                    <option>Pediatría</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-outline-primary">
+                📄 Descargar historial
+            </button>
+        </div>
+
+        <!-- Consultas Recientes -->
+        <div class="mb-5">
+            <h4 class="mb-4" style="color: var(--azul-medico);">Consultas recientes</h4>
+            
+            <!-- Consulta 1 -->
+            <div class="consultation-card">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div>
+                        <h5 class="consultation-date mb-1">12 Junio 2025</h5>
+                        <p class="doctor-info mb-0">Dr. Carlos Ruiz - Cardiología</p>
+                    </div>
+                    <span class="badge bg-success">Completada</span>
+                </div>
+                
+                <div class="consultation-notes">
+                    <strong>Notas de la consulta:</strong>
+                    <p class="mb-0">Consulta de rutina, todo en orden. Presión arterial 120/80, frecuencia cardíaca 72 lpm. Se recomienda continuar con medicación actual y realizar próximo control en 6 meses.</p>
+                </div>
+                
+                <div class="mt-3">
+                    <small class="text-muted">Medicamentos recetados: Atorvastatina 20mg, Aspirina 100mg</small>
+                </div>
+            </div>
+            
+            <!-- Consulta 2 -->
+            <div class="consultation-card">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div>
+                        <h5 class="consultation-date mb-1">15 Mayo 2025</h5>
+                        <p class="doctor-info mb-0">Dra. Laura García - Ginecología</p>
+                    </div>
+                    <span class="badge bg-success">Completada</span>
+                </div>
+                
+                <div class="consultation-notes">
+                    <strong>Notas de la consulta:</strong>
+                    <p class="mb-0">Control ginecológico anual. Resultados de mamografía dentro de parámetros normales. Citología sin hallazgos relevantes. Próximo control en 1 año.</p>
+                </div>
+                
+                <div class="mt-3">
+                    <small class="text-muted">Exámenes realizados: Mamografía, Citología vaginal</small>
+                </div>
+            </div>
+            
+            <!-- Consulta 3 -->
+            <div class="consultation-card">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div>
+                        <h5 class="consultation-date mb-1">28 Abril 2025</h5>
+                        <p class="doctor-info mb-0">Dr. Andrés Pérez - Dermatología</p>
+                    </div>
+                    <span class="badge bg-success">Completada</span>
+                </div>
+                
+                <div class="consultation-notes">
+                    <strong>Notas de la consulta:</strong>
+                    <p class="mb-0">Evaluación de lunar en brazo derecho. Lunares benignos, se recomienda protección solar diaria y control anual. No se requieren procedimientos adicionales.</p>
+                </div>
+                
+                <div class="mt-3">
+                    <small class="text-muted">Recomendaciones: Uso de protector solar FPS 50+</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indicadores Clave -->
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="stats-card">
+                    <h3 style="color: var(--azul-medico);">15,000+</h3>
+                    <p class="mb-0 text-muted">Pacientes atendidos</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="stats-card">
+                    <h3 style="color: var(--azul-medico);">120+</h3>
+                    <p class="mb-0 text-muted">Profesionales activos</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="stats-card">
+                    <h3 style="color: var(--azul-medico);">8</h3>
+                    <p class="mb-0 text-muted">Ciudades cubiertas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Aquí puedes agregar funcionalidad para filtrar consultas
+        document.querySelectorAll('.filter-select').forEach(select => {
+            select.addEventListener('change', function() {
+                // Lógica de filtrado
+                console.log('Filtrando consultas...');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CareConnect Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-medico: #0077B6;
+            --blanco: #FFFFFF;
+            --gris-suave: #F1F1F1;
+            --verde-salud: #06D6A0;
+            --gris-texto: #666666;
+            --gris-fondo: #F9F9F9;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--gris-fondo);
+            color: #333333;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            background-color: var(--gris-suave);
+            width: 260px;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .header {
+            background-color: var(--blanco);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            margin: -2rem -2rem 2rem -2rem;
+        }
+        
+        .welcome-card {
+            background: var(--blanco);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .appointment-card {
+            background: var(--blanco);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            border-left: 4px solid var(--verde-salud);
+        }
+        
+        .quick-action-btn {
+            background: var(--azul-medico);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-action-btn:hover {
+            background: #0066CC;
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        .doctor-card {
+            background: var(--blanco);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .doctor-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--gris-suave);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--azul-medico);
+        }
+        
+        .nav-link {
+            color: #333333;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--azul-medico);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header mb-4">
+            <h4 style="color: var(--azul-medico);">CareConnect Hub</h4>
+        </div>
+        
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="dashboard.html">
+                    🏠 Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="citas.html">
+                    📅 Mis Citas
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="historial.html">
+                    📊 Historial Médico
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    💬 Chat con Doctores
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    ⚙️ Configuración
+                </a>
+            </li>
+            <li class="nav-item mt-4">
+                <a class="nav-link" href="index.html" style="color: #dc3545;">
+                    🚪 Cerrar Sesión
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="fw-bold mb-0" style="color: var(--azul-medico);">¡Bienvenido, María!</h2>
+                <div class="user-info">
+                    <span class="text-muted">Último acceso: Hoy, 10:30 AM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Welcome Section -->
+        <div class="welcome-card">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4 style="color: var(--azul-medico);">Tu salud en buenas manos</h4>
+                    <p class="text-muted mb-0">Gestiona tus citas, revisa tu historial y mantente en contacto con tus profesionales de salud.</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <div class="quick-stats">
+                        <p class="mb-1"><strong>3</strong> citas próximas</p>
+                        <p class="mb-0"><strong>12</strong> consultas realizadas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-lg-8">
+                <!-- Próxima Cita -->
+                <div class="appointment-card mb-4">
+                    <h5 style="color: var(--azul-medico);">Próxima cita</h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="mb-1"><strong>15 Jun 2025 - 10:00 AM</strong></p>
+                            <p class="mb-1">Dr. Carlos Ruiz - Cardiología</p>
+                            <p class="text-muted mb-0">Consulta de rutina, todo en orden.</p>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-primary btn-sm">Ver detalles</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accesos Rápidos -->
+                <div class="row mb-4">
+                    <div class="col-md-4 mb-3">
+                        <a href="citas.html" class="quick-action-btn">
+                            📅 Agendar cita
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <a href="historial.html" class="quick-action-btn">
+                            📊 Ver historial
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <a href="#" class="quick-action-btn">
+                            💬 Contactar doctor
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Doctores Frecuentes -->
+                <h4 class="mb-3" style="color: var(--azul-medico);">Tus doctores</h4>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="doctor-card">
+                            <div class="doctor-avatar">CR</div>
+                            <h6>Dr. Carlos Ruiz</h6>
+                            <p class="text-muted small mb-2">Cardiólogo</p>
+                            <p class="small text-muted">Atención personalizada</p>
+                            <button class="btn btn-outline-primary btn-sm">Contactar</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="doctor-card">
+                            <div class="doctor-avatar">MG</div>
+                            <h6>Dra. María González</h6>
+                            <p class="text-muted small mb-2">Pediatra</p>
+                            <p class="small text-muted">Especialista en niños</p>
+                            <button class="btn btn-outline-primary btn-sm">Contactar</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="doctor-card">
+                            <div class="doctor-avatar">AP</div>
+                            <h6>Dr. Andrés Pérez</h6>
+                            <p class="text-muted small mb-2">Dermatólogo</p>
+                            <p class="small text-muted">Cuidado de la piel</p>
+                            <button class="btn btn-outline-primary btn-sm">Contactar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-lg-4">
+                <!-- Recordatorios -->
+                <div class="appointment-card mb-4">
+                    <h6 style="color: var(--azul-medico);">Recordatorios</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">📋 Exámenes pendientes: 2</li>
+                        <li class="mb-2">💊 Medicación: Tomar a las 8 PM</li>
+                        <li class="mb-0">🏥 Próximo control: 30 Jun 2025</li>
+                    </ul>
+                </div>
+
+                <!-- Indicadores de Salud -->
+                <div class="appointment-card">
+                    <h6 style="color: var(--azul-medico);">Indicadores clave</h6>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <h5 style="color: var(--verde-salud);">15k+</h5>
+                            <small>Pacientes</small>
+                        </div>
+                        <div class="col-4">
+                            <h5 style="color: var(--verde-salud);">120+</h5>
+                            <small>Profesionales</small>
+                        </div>
+                        <div class="col-4">
+                            <h5 style="color: var(--verde-salud);">8</h5>
+                            <small>Ciudades</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Aquí puedes agregar interactividad específica del dashboard
+        console.log('Dashboard cargado correctamente');
+    </script>
+</body>
+</html>
